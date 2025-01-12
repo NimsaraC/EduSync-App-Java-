@@ -3,47 +3,27 @@ package com.android.edusyncapp.pages;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.android.edusyncapp.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Timetable_Page#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
 public class Timetable_Page extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
     public Timetable_Page() {
-        // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Timetable_Page.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Timetable_Page newInstance(String param1, String param2) {
+    public static Timetable_Page newInstance() {
         Timetable_Page fragment = new Timetable_Page();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -52,15 +32,79 @@ public class Timetable_Page extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+    private TextView txtToday, day1, day2, day3, day4, day5, day6, day7, noEvents, day, selectedDay;
+    private RecyclerView timeTableRecycle;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_timetable__page, container, false);
+        View view = inflater.inflate(R.layout.fragment_timetable__page, container, false);
+
+        items(view);
+        setWeekDays();
+
+        return view;
+    }
+
+    private void items(View view){
+
+        txtToday = view.findViewById(R.id.txtToday);
+        day1 = view.findViewById(R.id.day1);
+        day2 = view.findViewById(R.id.day2);
+        day3 = view.findViewById(R.id.day3);
+        day4 = view.findViewById(R.id.day4);
+        day5 = view.findViewById(R.id.day5);
+        day6 = view.findViewById(R.id.day6);
+        day7 = view.findViewById(R.id.day7);
+        noEvents = view.findViewById(R.id.noEvents);
+        day = view.findViewById(R.id.day);
+        timeTableRecycle = view.findViewById(R.id.timeTableRecycle);
+
+    }
+
+    private void setWeekDays() {
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE, MMMM d", Locale.getDefault());
+        txtToday.setText(dateFormat.format(calendar.getTime()));
+
+        calendar.setFirstDayOfWeek(Calendar.SUNDAY);
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+
+        TextView[] days = {day1, day2, day3, day4, day5, day6, day7};
+        SimpleDateFormat dayFormat = new SimpleDateFormat("d", Locale.getDefault());
+        String todayDate = dayFormat.format(Calendar.getInstance().getTime());
+
+        for (int i = 0; i < 7; i++) {
+            String currentDay = dayFormat.format(calendar.getTime());
+            days[i].setText(currentDay);
+
+            if (currentDay.equals(todayDate)) {
+                days[i].setBackgroundResource(R.color.btn_l);
+                days[i].setTextColor(getResources().getColor(R.color.primary));
+            }
+
+            calendar.add(Calendar.DAY_OF_MONTH, 1);
+        }
+
+        String[] dayNames = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+        for (int i = 0; i < 7; i++) {
+            setDateName(dayNames[i], days[i], day, days);
+        }
+    }
+
+    private void setDateName(String day, TextView selectedDay,TextView today, TextView[] allDays) {
+        selectedDay.setOnClickListener(v -> {
+            today.setText(day);
+
+            for (TextView dayTextView : allDays) {
+                dayTextView.setBackgroundResource(R.color.primary);
+                dayTextView.setTextColor(getResources().getColor(R.color.btn_l));
+            }
+
+            selectedDay.setBackgroundResource(R.color.btn_l);
+            selectedDay.setTextColor(getResources().getColor(R.color.primary));
+        });
     }
 }
