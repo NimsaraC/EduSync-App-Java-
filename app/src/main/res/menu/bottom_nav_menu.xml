@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Home"
+        android:id="@+id/Home"
+        android:icon="@drawable/home_nav"/>
+    <item android:title="Notes"
+        android:id="@+id/Notes"
+        android:icon="@drawable/notes_nav"/>
+    <item android:title="Timetable"
+        android:id="@+id/Timetable"
+        android:icon="@drawable/timetable_nav"/>
+    <item android:title="Events"
+        android:id="@+id/Events"
+        android:icon="@drawable/event_nav"/>
+    <item android:title="Profile"
+        android:id="@+id/Profile"
+        android:icon="@drawable/profile_nav"/>
+</menu>
