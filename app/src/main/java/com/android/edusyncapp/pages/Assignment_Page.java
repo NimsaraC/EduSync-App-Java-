@@ -1,5 +1,6 @@
 package com.android.edusyncapp.pages;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -13,7 +14,7 @@ import com.android.edusyncapp.R;
 
 public class Assignment_Page extends AppCompatActivity {
 
-    private TextView btnAll, btnDue, btnEnd;
+    private TextView btnAll, btnDue, btnEnd, btnAddAssignment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,7 @@ public class Assignment_Page extends AppCompatActivity {
         btnAll = findViewById(R.id.btnAll);
         btnDue = findViewById(R.id.btnDue);
         btnEnd = findViewById(R.id.btnEnd);
+        btnAddAssignment = findViewById(R.id.btnAddAssignment);
     }
     private void actions(){
         btnAll.setOnClickListener(v->{
@@ -61,5 +63,10 @@ public class Assignment_Page extends AppCompatActivity {
             btnDue.setBackgroundColor(getResources().getColor(R.color.primary));
             btnEnd.setBackgroundColor(getResources().getColor(R.color.secondary_text));
         });
+        btnAddAssignment.setOnClickListener(v->{
+            Intent intent = new Intent(getApplicationContext(), AddAssignment_Page.class);
+            startActivity(intent);
+        });
+
     }
 }

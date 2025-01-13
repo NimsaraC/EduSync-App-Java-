@@ -19,6 +19,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Main_Screen extends AppCompatActivity {
     ActivityMainScreenBinding binding;
+    private String fragmentName = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +34,24 @@ public class Main_Screen extends AppCompatActivity {
         });
         replaceFragment(new Home_Page());
 
-
+        fragmentName = getIntent().getStringExtra("fragment");
+        if (fragmentName != null) {
+            if (fragmentName.equals("Note")) {
+                replaceFragment(new Note_Page());
+                binding.bottomNavigationView.setSelectedItemId(R.id.Notes);
+            } else if (fragmentName.equals("Event")) {
+                replaceFragment(new Event_Page());
+                binding.bottomNavigationView.setSelectedItemId(R.id.Events);
+            } else if (fragmentName.equals("Timetable")) {
+                replaceFragment(new Timetable_Page());
+                binding.bottomNavigationView.setSelectedItemId(R.id.Timetable);
+            } else{
+                replaceFragment(new Profile_Page());
+                binding.bottomNavigationView.setSelectedItemId(R.id.Profile);
+            }
+        } else {
+            replaceFragment(new Home_Page());
+        }
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             if (item.getItemId() == R.id.Home) {

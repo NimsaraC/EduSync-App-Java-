@@ -53,15 +53,16 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <TextView
+                android:id="@+id/btnAddAssignment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/main_button"
                 android:layout_margin="20dp"
-                android:text="Add Assignment"
+                android:background="@drawable/main_button"
                 android:gravity="center"
+                android:text="Add Assignment"
                 android:textColor="@color/primary"
-                android:textStyle="bold"
-                android:textSize="25dp"/>
+                android:textSize="25dp"
+                android:textStyle="bold" />
 
 
         </LinearLayout>

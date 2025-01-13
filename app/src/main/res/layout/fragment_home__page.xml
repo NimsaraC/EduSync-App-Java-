@@ -39,6 +39,7 @@
                 android:layout_marginBottom="15dp">
 
                 <LinearLayout
+                    android:id="@+id/btnTimetable"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -127,6 +128,7 @@
                 android:layout_marginBottom="25dp">
 
                 <LinearLayout
+                    android:id="@+id/btnNote"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -166,6 +168,7 @@
                 android:layout_marginBottom="25dp">
 
                 <LinearLayout
+                    android:id="@+id/btnEvent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
