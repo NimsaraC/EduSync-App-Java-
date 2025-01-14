@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/btn_l"
+    tools:context=".pages.NoteDetails_Page">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/btn_l"
+        android:orientation="horizontal"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="EduSync"
+            android:textColor="@color/primary"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:src="@drawable/user" />
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="vertical"
+            app:layout_constraintBaseline_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="parent"
+            android:background="@color/primary"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:id="@+id/btnAddAssignment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+                android:background="@drawable/main_button"
+                android:gravity="center"
+                android:text="Add Assignment"
+                android:textColor="@color/primary"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/linearLayout2"
+            android:background="@color/primary">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/primary"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/noteTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Note Title"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="10dp"
+                    android:textColor="@color/main_text"
+                    android:textSize="30dp"
+                    android:textStyle="bold"
+                    android:textAlignment="center"/>
+
+                <TextView
+                    android:id="@+id/updatedDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Last update: 2025.01.01 10:10"
+                    android:textColor="@color/secondary_text"
+                    android:textSize="15dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginBottom="20dp"/>
+
+                <TextView
+                    android:id="@+id/noteDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:textColor="@color/main_text"
+                    android:textSize="15dp"/>
+
+                <TextView
+                    android:layout_marginStart="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Images"
+                    android:textSize="20dp"
+                    android:textColor="@color/secondary_text"
+                    android:layout_marginBottom="20dp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border_card"
+                    android:text="No Images"
+                    android:textAlignment="center"
+                    android:padding="20dp"
+                    android:textSize="15dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginBottom="20dp"
+                    android:textColor="@color/secondary_text"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/imagesView"
+                    android:layout_width="match_parent"
+                    android:layout_marginBottom="20dp"
+                    android:layout_height="match_parent" />
+
+
+            </LinearLayout>
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>

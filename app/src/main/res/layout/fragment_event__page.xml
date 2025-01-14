@@ -3,12 +3,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/primary"
     tools:context=".pages.Event_Page">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="eventPage" />
+        android:background="@color/primary"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/noteTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Event Calendar"
+            android:paddingTop="20dp"
+            android:paddingBottom="10dp"
+            android:textColor="@color/main_text"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:textAlignment="center"/>
+
+        <CalendarView
+            android:id="@+id/calenderView"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Event Calendar"
+            android:paddingTop="20dp"
+            android:paddingBottom="10dp"
+            android:textColor="@color/main_text"
+            android:textSize="25dp"
+            android:paddingStart="20dp"
+            android:textStyle="bold"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/eventsListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
 
 </FrameLayout>
