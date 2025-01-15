@@ -12,9 +12,11 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.android.edusyncapp.pages.Login_Page;
 import com.android.edusyncapp.pages.Main_Screen;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
     private TextView btnEnter;
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,12 +28,18 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        auth = FirebaseAuth.getInstance();
 
         btnEnter = findViewById(R.id.btnEnter);
 
         btnEnter.setOnClickListener(v->{
-            Intent intent = new Intent(MainActivity.this, Main_Screen.class);
-            startActivity(intent);
+            if(auth.getCurrentUser() != null){
+                Intent intent = new Intent(MainActivity.this, Main_Screen.class);
+                startActivity(intent);
+            }else{
+                Intent intent = new Intent(MainActivity.this, Login_Page.class);
+                startActivity(intent);
+            }
         });
 
     }
