@@ -59,8 +59,12 @@
                     android:textSize="15dp"/>
 
                 <androidx.core.widget.ContentLoadingProgressBar
+                    android:id="@+id/progressBar"
                     android:layout_width="match_parent"
-                    android:layout_height="10dp"/>
+                    android:layout_height="10dp"
+                    android:progressTint="@color/btn_r"
+                    android:indeterminateTint="@color/main_text"/>
+
 
                 <TextView
                     android:id="@+id/txtProgress"

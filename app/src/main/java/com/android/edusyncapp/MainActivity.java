@@ -42,5 +42,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //todo: Edit & Delete Notes
+        //todo: Logout
+        //todo: Note details single Image view
+        //todo: Note Search
+        //todo: Assignment ProgressBar
     }
 }
