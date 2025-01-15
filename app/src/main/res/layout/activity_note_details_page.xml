@@ -54,13 +54,13 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <TextView
-                android:id="@+id/btnAddAssignment"
+                android:id="@+id/btnManageNote"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="20dp"
                 android:background="@drawable/main_button"
                 android:gravity="center"
-                android:text="Add Assignment"
+                android:text="Edit/ Delete Note"
                 android:textColor="@color/primary"
                 android:textSize="25dp"
                 android:textStyle="bold" />
@@ -122,6 +122,7 @@
                     android:textStyle="bold"/>
 
                 <TextView
+                    android:id="@+id/noImages"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/border_card"
