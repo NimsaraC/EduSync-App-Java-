@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,6 +56,7 @@ public class Note_Page extends Fragment {
     private String userId;
     private NoteAdapter adapter;
     private List<Note> notes = new ArrayList<>();
+    private List<Note> filteredNotes = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,45 +70,81 @@ public class Note_Page extends Fragment {
 
         setData();
         actions();
+        searchNotes();
 
         return view;
     }
-    private void items(View view){
+
+    private void items(View view) {
         searchBox = view.findViewById(R.id.searchBox);
         AddNote = view.findViewById(R.id.AddNote);
         noteListView = view.findViewById(R.id.noteListView);
-
     }
-    private void actions(){
-        AddNote.setOnClickListener(v->{
+
+    private void actions() {
+        AddNote.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), AddNote_Page.class);
             startActivity(intent);
         });
     }
-    private void setData(){
+
+    private void setData() {
         noteListView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapter = new NoteAdapter(notes, getActivity());
+        adapter = new NoteAdapter(filteredNotes, getActivity());
         noteListView.setAdapter(adapter);
         loadNotes();
-
     }
-    private void loadNotes(){
+
+    private void loadNotes() {
         noteDB.listenForNoteChanges(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 notes.clear();
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                filteredNotes.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Note note = dataSnapshot.getValue(Note.class);
-                    if(note.getUserId().equals(userId)){
+                    if (note != null && note.getUserId().equals(userId)) {
                         notes.add(note);
                     }
                 }
+                filteredNotes.addAll(notes);
                 adapter.notifyDataSetChanged();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(getActivity(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void searchNotes() {
+        searchBox.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                String query = charSequence.toString().trim().toLowerCase();
+                filteredNotes.clear();
+
+                if (query.isEmpty()) {
+                    filteredNotes.addAll(notes);
+                } else {
+                    for (Note note : notes) {
+                        if (note.getTitle().toLowerCase().contains(query) ||
+                                note.getTitle().toLowerCase().contains(query)) {
+                            filteredNotes.add(note);
+                        }
+                    }
+                }
+
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
             }
         });
     }

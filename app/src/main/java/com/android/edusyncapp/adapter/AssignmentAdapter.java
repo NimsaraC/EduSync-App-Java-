@@ -70,7 +70,6 @@ public class AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.Vi
 
                 Date currentDate = new Date();
 
-
                 long totalMinutes = TimeUnit.MINUTES.convert(dueDate.getTime() - addDate.getTime(), TimeUnit.MILLISECONDS);
                 long minutesPassed = TimeUnit.MINUTES.convert(currentDate.getTime() - addDate.getTime(), TimeUnit.MILLISECONDS);
 
@@ -81,21 +80,24 @@ public class AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.Vi
                     holder.progressBar.setProgressTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.btn_r)));
 
                     holder.txtProgress.setText(progress + "%");
+
+                    if (progress >= 100) {
+                        assignment.setStatus("End");
+                        notifyItemChanged(position);
+                    }
                 } else {
                     holder.progressBar.setProgress(0);
                     holder.txtProgress.setText("0%");
                 }
-
 
             } catch (ParseException e) {
                 e.printStackTrace();
                 holder.progressBar.setProgress(0);
                 holder.txtProgress.setText("Error");
             }
-
-
         }
     }
+
 
 
     @Override

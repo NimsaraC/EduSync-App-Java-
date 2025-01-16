@@ -1,6 +1,7 @@
 package com.android.edusyncapp.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.edusyncapp.R;
+import com.android.edusyncapp.pages.NoteSingleImage;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
@@ -35,6 +37,11 @@ public class NoteViewAdapter extends RecyclerView.Adapter<NoteViewAdapter.ViewHo
     public void onBindViewHolder(@NonNull NoteViewAdapter.ViewHolder holder, int position) {
         String imageUrl = imageUris.get(position);
         Glide.with(context).load(imageUrl).into(holder.ivImage);
+        holder.ivImage.setOnClickListener(v->{
+            Intent intent = new Intent(context, NoteSingleImage.class);
+            intent.putExtra("imageUrl", imageUrl);
+            context.startActivity(intent);
+        });
     }
 
     @Override

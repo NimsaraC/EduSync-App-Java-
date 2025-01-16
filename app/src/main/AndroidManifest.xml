@@ -15,6 +15,9 @@
         android:theme="@style/Theme.EduSyncApp"
         tools:targetApi="31">
         <activity
+            android:name=".pages.NoteSingleImage"
+            android:exported="false" />
+        <activity
             android:name=".pages.Materials_Page"
             android:exported="false" />
         <activity
