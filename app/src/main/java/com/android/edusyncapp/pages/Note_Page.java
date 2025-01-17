@@ -84,6 +84,7 @@ public class Note_Page extends Fragment {
     private void actions() {
         AddNote.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), AddNote_Page.class);
+            intent.putExtra("type", "Add");
             startActivity(intent);
         });
     }

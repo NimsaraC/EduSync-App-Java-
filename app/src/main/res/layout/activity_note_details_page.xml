@@ -60,7 +60,7 @@
                 android:layout_margin="20dp"
                 android:background="@drawable/main_button"
                 android:gravity="center"
-                android:text="Edit/ Delete Note"
+                android:text="Edit Note"
                 android:textColor="@color/primary"
                 android:textSize="25dp"
                 android:textStyle="bold" />
@@ -141,6 +141,17 @@
                     android:layout_marginBottom="20dp"
                     android:layout_height="match_parent" />
 
+                <TextView
+                    android:id="@+id/btnDelete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Delete Note"
+                    android:textAlignment="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="#C32C2C"/>
 
             </LinearLayout>
         </ScrollView>

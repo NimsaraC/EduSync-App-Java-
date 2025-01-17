@@ -5,6 +5,7 @@ import static android.view.View.VISIBLE;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,8 +27,13 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class Assignment_Page extends AppCompatActivity {
 
@@ -63,6 +69,7 @@ public class Assignment_Page extends AppCompatActivity {
         assignmentListView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new AssignmentAdapter(assignments, this);
         assignmentListView.setAdapter(adapter);
+        checkStatus();
 
         getAssignments("All");
 
@@ -138,4 +145,51 @@ public class Assignment_Page extends AppCompatActivity {
         });
 
     }
+    private void checkStatus() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
+        Date today = Calendar.getInstance().getTime();
+
+        if (!assignments.isEmpty()) {
+            List<Assignment> assignmentsToUpdate = new ArrayList<>();
+
+            for (Assignment assignment : assignments) {
+                String dueDate = assignment.getDueDate();
+                try {
+                    Date assignmentDueDate = dateFormat.parse(dueDate);
+
+                    if (assignmentDueDate.before(today) && !assignment.getStatus().equals("End")) {
+                        assignment.setStatus("End");
+                        assignmentsToUpdate.add(assignment);
+                    }
+                } catch (ParseException e) {
+                    Log.e("AssignmentStatus", "Error parsing due date: " + e.getMessage());
+                }
+            }
+            if (!assignmentsToUpdate.isEmpty()) {
+                batchUpdateAssignments(assignmentsToUpdate);
+            } else {
+                Log.d("AssignmentStatus", "No assignments need status updates.");
+            }
+        } else {
+            Log.d("AssignmentStatus", "No assignments available.");
+        }
+    }
+
+    private void batchUpdateAssignments(List<Assignment> assignmentsToUpdate) {
+        for (Assignment assignment : assignmentsToUpdate) {
+            assignmentDB.editAssignment(assignment.getId(), assignment, new AssignmentDB.DBCallback() {
+                @Override
+                public void onSuccess(String message) {
+                    Log.d("AssignmentStatus", "Assignment status updated to 'End' for assignment: " + assignment.getTitle());
+                }
+
+                @Override
+                public void onFailure(String error) {
+                    Log.e("AssignmentStatus", "Error updating assignment status: " + error);
+                }
+            });
+        }
+    }
+
+
 }

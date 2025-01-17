@@ -1,5 +1,6 @@
 package com.android.edusyncapp.adapter;
 
+import android.content.Context;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,13 +11,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.edusyncapp.R;
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
 public class AddNoteAdapter extends RecyclerView.Adapter<AddNoteAdapter.ViewHolder> {
     private List<Uri> imageUris;
-    public AddNoteAdapter(List<Uri> imageUris) {
+    private Context context;
+    public AddNoteAdapter(List<Uri> imageUris, Context context) {
         this.imageUris = imageUris;
+        this.context = context;
     }
 
     @NonNull
@@ -29,7 +33,9 @@ public class AddNoteAdapter extends RecyclerView.Adapter<AddNoteAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull AddNoteAdapter.ViewHolder holder, int position) {
         Uri imageUri = imageUris.get(position);
-        holder.ivImage.setImageURI(imageUri);
+//        holder.ivImage.setImageURI(imageUri);
+        Glide.with(context).load(imageUri).into(holder.ivImage);
+
     }
 
     @Override

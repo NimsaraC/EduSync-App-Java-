@@ -15,7 +15,9 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.edusyncapp.R;
+import com.android.edusyncapp.database.AssignmentDB;
 import com.android.edusyncapp.models.Assignment;
+import com.google.android.material.progressindicator.LinearProgressIndicator;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -44,6 +46,8 @@ public class AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.Vi
         holder.mainTitle.setText(assignment.getTitle());
         holder.title1.setText(assignment.getTitle());
         holder.txtDueDate.setText("Due Date: " + assignment.getDueDate());
+
+        AssignmentDB assignmentDB = new AssignmentDB();
 
         if (assignment.getStatus().equals("End")) {
             holder.isComplete.setVisibility(View.VISIBLE);
@@ -81,10 +85,6 @@ public class AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.Vi
 
                     holder.txtProgress.setText(progress + "%");
 
-                    if (progress >= 100) {
-                        assignment.setStatus("End");
-                        notifyItemChanged(position);
-                    }
                 } else {
                     holder.progressBar.setProgress(0);
                     holder.txtProgress.setText("0%");
@@ -108,7 +108,7 @@ public class AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.Vi
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView mainTitle, title1, txtDueDate, txtProgress, txtDueDateComplete;
         private LinearLayout isProgress, isComplete;
-        private ProgressBar progressBar;
+        private LinearProgressIndicator progressBar;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             mainTitle = itemView.findViewById(R.id.mainTitle);
