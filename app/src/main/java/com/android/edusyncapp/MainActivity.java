@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //todo: Logout
-        //todo: Events
+        //todo: Events add
         //todo: Profile
         //todo: Note Single image Delete
     }
