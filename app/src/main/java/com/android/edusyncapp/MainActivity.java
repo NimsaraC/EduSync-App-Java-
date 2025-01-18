@@ -42,9 +42,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //todo: Logout
         //todo: Events add
-        //todo: Profile
+        //todo: mark events in calender
+        //todo: Profile Edit
         //todo: Note Single image Delete
+        //!todo: note edit -> remove image error
     }
 }

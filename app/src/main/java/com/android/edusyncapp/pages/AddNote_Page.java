@@ -27,13 +27,14 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class AddNote_Page extends AppCompatActivity {
     private EditText title, Note;
-    private TextView btnAddPic, btnAddNote;
+    private TextView btnAddPic, btnAddNote, txtType;
     private RecyclerView picList;
     private NoteDB noteDB;
     private FirebaseAuth auth;
@@ -72,10 +73,13 @@ public class AddNote_Page extends AppCompatActivity {
         picList.setAdapter(adapter);
 
         if (type.equals("Add")) {
+            btnAddNote.setText("Add Note");
             btnAddPic.setOnClickListener(v -> selectImages());
             btnAddNote.setOnClickListener(v -> saveNoteImages());
         }else{
             btnAddNote.setText("Edit Note");
+            txtType.setText("Edit Note");
+            btnAddPic.setVisibility(View.GONE);
             editNote = (Note) getIntent().getSerializableExtra("note");
             setData();
             btnAddPic.setOnClickListener(v -> selectImages());
@@ -90,6 +94,7 @@ public class AddNote_Page extends AppCompatActivity {
         btnAddPic = findViewById(R.id.btnAddPic);
         btnAddNote = findViewById(R.id.btnAddNote);
         picList = findViewById(R.id.picList);
+        txtType = findViewById(R.id.txtType);
     }
     private void selectImages(){
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
@@ -241,30 +246,38 @@ public class AddNote_Page extends AppCompatActivity {
         }
     }
     private void saveEditImages(){
-        for (int i = 0; i < imageUris.size(); i++) {
-            Uri imageUri = imageUris.get(i);
-            if (imageUri == null) {
-                continue;
+        if(imageUris.isEmpty()){
+            if(imageUrls != null){
+                imageUrls.clear();
+                editNote.setImageUrls(imageUrls);
             }
-            String imageId = "note_" + System.currentTimeMillis() + "_" + i;
-            StorageReference imageRef = storageRef.child(imageId);
-            int finalI = i;
-            imageRef.putFile(imageUri)
-                    .addOnSuccessListener(taskSnapshot -> imageRef.getDownloadUrl()
-                            .addOnSuccessListener(uri -> {
-                                imageUrls.add(uri.toString());
-                                if (imageUrls.size() == imageUris.size()) {
-                                    editNote();
-                                }
-                            }))
-                    .addOnFailureListener(e ->
-                    {
-                        if(type.equals("Add")){
-                            Toast.makeText(this, "Failed to upload image " + (finalI + 1), Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                                }
+            editNote();
+        }else{
+            for (int i = 0; i < imageUris.size(); i++) {
+                imageUrls.clear();
+                Uri imageUri = imageUris.get(i);
+                if (imageUri == null) {
+                    continue;
+                }
+                String imageId = "note_" + System.currentTimeMillis() + "_" + i;
+                StorageReference imageRef = storageRef.child(imageId);
+                int finalI = i;
+                imageRef.putFile(imageUri)
+                        .addOnSuccessListener(taskSnapshot -> imageRef.getDownloadUrl()
+                                .addOnSuccessListener(uri -> {
+                                    imageUrls.add(uri.toString());
+                                    if (imageUrls.size() == imageUris.size()) {
+                                        editNote();
+                                    }
+                                }))
+                        .addOnFailureListener(e ->
+                        {
+                            if(type.equals("Add")){
+                                Toast.makeText(this, "Failed to upload image " + (finalI + 1), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+            }
+        }
     }
-
 
 }

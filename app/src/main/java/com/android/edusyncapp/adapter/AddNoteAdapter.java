@@ -33,7 +33,12 @@ public class AddNoteAdapter extends RecyclerView.Adapter<AddNoteAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull AddNoteAdapter.ViewHolder holder, int position) {
         Uri imageUri = imageUris.get(position);
-//        holder.ivImage.setImageURI(imageUri);
+        holder.ivDelete.setOnClickListener(v -> {
+            imageUris.remove(position);
+            notifyItemRemoved(position);
+            notifyItemRangeChanged(position, imageUris.size());
+        });
+
         Glide.with(context).load(imageUri).into(holder.ivImage);
 
     }
@@ -44,10 +49,11 @@ public class AddNoteAdapter extends RecyclerView.Adapter<AddNoteAdapter.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView ivImage;
+        ImageView ivImage, ivDelete;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ivImage = itemView.findViewById(R.id.ivImage);
+            ivDelete = itemView.findViewById(R.id.ivDelete);
         }
     }
 }

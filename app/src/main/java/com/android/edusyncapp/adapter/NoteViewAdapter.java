@@ -37,6 +37,7 @@ public class NoteViewAdapter extends RecyclerView.Adapter<NoteViewAdapter.ViewHo
     public void onBindViewHolder(@NonNull NoteViewAdapter.ViewHolder holder, int position) {
         String imageUrl = imageUris.get(position);
         Glide.with(context).load(imageUrl).into(holder.ivImage);
+        holder.ivDelete.setVisibility(View.GONE);
         holder.ivImage.setOnClickListener(v->{
             Intent intent = new Intent(context, NoteSingleImage.class);
             intent.putExtra("imageUrl", imageUrl);
@@ -50,11 +51,12 @@ public class NoteViewAdapter extends RecyclerView.Adapter<NoteViewAdapter.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView ivImage;
+        ImageView ivImage, ivDelete;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ivImage = itemView.findViewById(R.id.ivImage);
+            ivDelete = itemView.findViewById(R.id.ivDelete);
         }
     }
 }
