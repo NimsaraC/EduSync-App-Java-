@@ -6,648 +6,654 @@
     android:background="@color/primary"
     tools:context=".pages.Event_Page">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/primary"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/noteTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Event Calendar"
-            android:paddingTop="20dp"
-            android:paddingBottom="10dp"
-            android:textColor="@color/main_text"
-            android:textSize="30dp"
-            android:textStyle="bold"
-            android:textAlignment="center"/>
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/primary"
             android:orientation="vertical">
 
-            <!-- Month Header -->
             <TextView
-                android:id="@+id/month_year_textview"
+                android:id="@+id/noteTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="January 2025"
-                android:padding="15dp"
+                android:text="Event Calendar"
+                android:paddingTop="20dp"
+                android:paddingBottom="10dp"
                 android:textColor="@color/main_text"
+                android:textSize="30dp"
                 android:textStyle="bold"
-                android:gravity="center"
-                android:textSize="20dp"/>
+                android:textAlignment="center"/>
 
-            <!-- Days of the Week Header -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical">
+
+                <!-- Month Header -->
                 <TextView
-                    android:layout_width="0dp"
+                    android:id="@+id/month_year_textview"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textColor="@color/secondary_text"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:textSize="15dp"
+                    android:text="January 2025"
+                    android:padding="15dp"
+                    android:textColor="@color/main_text"
                     android:textStyle="bold"
-                    android:text="M" android:gravity="center"/>
-                <TextView
-                    android:layout_width="0dp"
+                    android:gravity="center"
+                    android:textSize="20dp"/>
+
+                <!-- Days of the Week Header -->
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textColor="@color/secondary_text"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:textSize="15dp"
-                    android:textStyle="bold"
-                    android:text="T" android:gravity="center"/>
-                <TextView
-                    android:layout_width="0dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/secondary_text"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:text="M" android:gravity="center"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/secondary_text"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:text="T" android:gravity="center"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/secondary_text"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:text="W" android:gravity="center"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/secondary_text"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:text="T" android:gravity="center"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/secondary_text"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:text="F" android:gravity="center"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/secondary_text"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:text="S" android:gravity="center"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/secondary_text"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:text="S" android:gravity="center"/>
+                </LinearLayout>
+
+                <!-- Week 1 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textColor="@color/secondary_text"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:textSize="15dp"
-                    android:textStyle="bold"
-                    android:text="W" android:gravity="center"/>
-                <TextView
-                    android:layout_width="0dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/day1_1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:textColor="@color/main_text"
+                        android:text="1" android:gravity="center"/>
+                    <TextView
+                        android:id="@+id/day1_2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:textColor="@color/main_text"
+                        android:text="2" android:gravity="center"/>
+                    <TextView
+                        android:id="@+id/day1_3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:textColor="@color/main_text"
+                        android:text="3" android:gravity="center"/>
+                    <TextView
+                        android:id="@+id/day1_4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:textColor="@color/main_text"
+                        android:text="4" android:gravity="center"/>
+                    <TextView
+                        android:id="@+id/day1_5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:textColor="@color/main_text"
+                        android:text="5" android:gravity="center"/>
+                    <TextView
+                        android:id="@+id/day1_6"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:textColor="@color/main_text"
+                        android:text="6" android:gravity="center"/>
+                    <TextView
+                        android:id="@+id/day1_7"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:textColor="@color/main_text"
+                        android:text="7" android:gravity="center"/>
+                </LinearLayout>
+
+                <!-- Week 2 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textColor="@color/secondary_text"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:textSize="15dp"
-                    android:textStyle="bold"
-                    android:text="T" android:gravity="center"/>
-                <TextView
-                    android:layout_width="0dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/day2_1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:textColor="@color/main_text"
+                        android:text="8" android:gravity="center"/>
+                    <TextView
+                        android:id="@+id/day2_2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:textColor="@color/main_text"
+                        android:text="9" android:gravity="center"/>
+                    <TextView
+                        android:id="@+id/day2_3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:textColor="@color/main_text"
+                        android:text="10" android:gravity="center"/>
+                    <TextView
+                        android:id="@+id/day2_4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:textColor="@color/main_text"
+                        android:text="11" android:gravity="center"/>
+                    <TextView
+                        android:id="@+id/day2_5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:textColor="@color/main_text"
+                        android:text="12" android:gravity="center"/>
+                    <TextView
+                        android:id="@+id/day2_6"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:textColor="@color/main_text"
+                        android:text="13" android:gravity="center"/>
+                    <TextView
+                        android:id="@+id/day2_7"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:textColor="@color/main_text"
+                        android:text="14" android:gravity="center"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textColor="@color/secondary_text"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:textSize="15dp"
-                    android:textStyle="bold"
-                    android:text="F" android:gravity="center"/>
-                <TextView
-                    android:layout_width="0dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/day3_1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:textColor="@color/main_text"
+                        android:text="8" android:gravity="center"/>
+                    <TextView
+                        android:id="@+id/day3_2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:textColor="@color/main_text"
+                        android:text="9" android:gravity="center"/>
+                    <TextView
+                        android:id="@+id/day3_3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:textColor="@color/main_text"
+                        android:text="10" android:gravity="center"/>
+                    <TextView
+                        android:id="@+id/day3_4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:textColor="@color/main_text"
+                        android:text="11" android:gravity="center"/>
+                    <TextView
+                        android:id="@+id/day3_5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:textColor="@color/main_text"
+                        android:text="12" android:gravity="center"/>
+                    <TextView
+                        android:id="@+id/day3_6"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:textColor="@color/main_text"
+                        android:text="13" android:gravity="center"/>
+                    <TextView
+                        android:id="@+id/day3_7"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:textColor="@color/main_text"
+                        android:text="14" android:gravity="center"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textColor="@color/secondary_text"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:textSize="15dp"
-                    android:textStyle="bold"
-                    android:text="S" android:gravity="center"/>
-                <TextView
-                    android:layout_width="0dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/day4_1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:textColor="@color/main_text"
+                        android:text="8" android:gravity="center"/>
+                    <TextView
+                        android:id="@+id/day4_2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:textColor="@color/main_text"
+                        android:text="9" android:gravity="center"/>
+                    <TextView
+                        android:id="@+id/day4_3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:textColor="@color/main_text"
+                        android:text="10" android:gravity="center"/>
+                    <TextView
+                        android:id="@+id/day4_4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:textColor="@color/main_text"
+                        android:text="11" android:gravity="center"/>
+                    <TextView
+                        android:id="@+id/day4_5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:textColor="@color/main_text"
+                        android:text="12" android:gravity="center"/>
+                    <TextView
+                        android:id="@+id/day4_6"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:textColor="@color/main_text"
+                        android:text="13" android:gravity="center"/>
+                    <TextView
+                        android:id="@+id/day4_7"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:textColor="@color/main_text"
+                        android:text="14" android:gravity="center"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textColor="@color/secondary_text"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:textSize="15dp"
-                    android:textStyle="bold"
-                    android:text="S" android:gravity="center"/>
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/day5_1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:textColor="@color/main_text"
+                        android:text="8" android:gravity="center"/>
+                    <TextView
+                        android:id="@+id/day5_2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:textColor="@color/main_text"
+                        android:text="9" android:gravity="center"/>
+                    <TextView
+                        android:id="@+id/day5_3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:textColor="@color/main_text"
+                        android:text="10" android:gravity="center"/>
+                    <TextView
+                        android:id="@+id/day5_4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:textColor="@color/main_text"
+                        android:text="11" android:gravity="center"/>
+                    <TextView
+                        android:id="@+id/day5_5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:textColor="@color/main_text"
+                        android:text="12" android:gravity="center"/>
+                    <TextView
+                        android:id="@+id/day5_6"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:textColor="@color/main_text"
+                        android:text="13" android:gravity="center"/>
+                    <TextView
+                        android:id="@+id/day5_7"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:textColor="@color/main_text"
+                        android:text="14" android:gravity="center"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/day6_1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:textColor="@color/main_text"
+                        android:text="8" android:gravity="center"/>
+                    <TextView
+                        android:id="@+id/day6_2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:textColor="@color/main_text"
+                        android:text="9" android:gravity="center"/>
+                    <TextView
+                        android:id="@+id/day6_3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:textColor="@color/main_text"
+                        android:text="10" android:gravity="center"/>
+                    <TextView
+                        android:id="@+id/day6_4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:textColor="@color/main_text"
+                        android:text="11" android:gravity="center"/>
+                    <TextView
+                        android:id="@+id/day6_5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:textColor="@color/main_text"
+                        android:text="12" android:gravity="center"/>
+                    <TextView
+                        android:id="@+id/day6_6"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:textColor="@color/main_text"
+                        android:text="13" android:gravity="center"/>
+                    <TextView
+                        android:id="@+id/day6_7"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:textColor="@color/main_text"
+                        android:text="14" android:gravity="center"/>
+                </LinearLayout>
+
+
             </LinearLayout>
 
-            <!-- Week 1 -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:id="@+id/day1_1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:textColor="@color/main_text"
-                    android:text="1" android:gravity="center"/>
-                <TextView
-                    android:id="@+id/day1_2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:textColor="@color/main_text"
-                    android:text="2" android:gravity="center"/>
-                <TextView
-                    android:id="@+id/day1_3"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:textColor="@color/main_text"
-                    android:text="3" android:gravity="center"/>
-                <TextView
-                    android:id="@+id/day1_4"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:textColor="@color/main_text"
-                    android:text="4" android:gravity="center"/>
-                <TextView
-                    android:id="@+id/day1_5"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:textColor="@color/main_text"
-                    android:text="5" android:gravity="center"/>
-                <TextView
-                    android:id="@+id/day1_6"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:textColor="@color/main_text"
-                    android:text="6" android:gravity="center"/>
-                <TextView
-                    android:id="@+id/day1_7"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:textColor="@color/main_text"
-                    android:text="7" android:gravity="center"/>
-            </LinearLayout>
 
-            <!-- Week 2 -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:id="@+id/day2_1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:textColor="@color/main_text"
-                    android:text="8" android:gravity="center"/>
-                <TextView
-                    android:id="@+id/day2_2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:textColor="@color/main_text"
-                    android:text="9" android:gravity="center"/>
-                <TextView
-                    android:id="@+id/day2_3"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:textColor="@color/main_text"
-                    android:text="10" android:gravity="center"/>
-                <TextView
-                    android:id="@+id/day2_4"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:textColor="@color/main_text"
-                    android:text="11" android:gravity="center"/>
-                <TextView
-                    android:id="@+id/day2_5"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:textColor="@color/main_text"
-                    android:text="12" android:gravity="center"/>
-                <TextView
-                    android:id="@+id/day2_6"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:textColor="@color/main_text"
-                    android:text="13" android:gravity="center"/>
-                <TextView
-                    android:id="@+id/day2_7"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:textColor="@color/main_text"
-                    android:text="14" android:gravity="center"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:id="@+id/day3_1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:textColor="@color/main_text"
-                    android:text="8" android:gravity="center"/>
-                <TextView
-                    android:id="@+id/day3_2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:textColor="@color/main_text"
-                    android:text="9" android:gravity="center"/>
-                <TextView
-                    android:id="@+id/day3_3"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:textColor="@color/main_text"
-                    android:text="10" android:gravity="center"/>
-                <TextView
-                    android:id="@+id/day3_4"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:textColor="@color/main_text"
-                    android:text="11" android:gravity="center"/>
-                <TextView
-                    android:id="@+id/day3_5"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:textColor="@color/main_text"
-                    android:text="12" android:gravity="center"/>
-                <TextView
-                    android:id="@+id/day3_6"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:textColor="@color/main_text"
-                    android:text="13" android:gravity="center"/>
-                <TextView
-                    android:id="@+id/day3_7"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:textColor="@color/main_text"
-                    android:text="14" android:gravity="center"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:id="@+id/day4_1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:textColor="@color/main_text"
-                    android:text="8" android:gravity="center"/>
-                <TextView
-                    android:id="@+id/day4_2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:textColor="@color/main_text"
-                    android:text="9" android:gravity="center"/>
-                <TextView
-                    android:id="@+id/day4_3"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:textColor="@color/main_text"
-                    android:text="10" android:gravity="center"/>
-                <TextView
-                    android:id="@+id/day4_4"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:textColor="@color/main_text"
-                    android:text="11" android:gravity="center"/>
-                <TextView
-                    android:id="@+id/day4_5"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:textColor="@color/main_text"
-                    android:text="12" android:gravity="center"/>
-                <TextView
-                    android:id="@+id/day4_6"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:textColor="@color/main_text"
-                    android:text="13" android:gravity="center"/>
-                <TextView
-                    android:id="@+id/day4_7"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:textColor="@color/main_text"
-                    android:text="14" android:gravity="center"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:id="@+id/day5_1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:textColor="@color/main_text"
-                    android:text="8" android:gravity="center"/>
-                <TextView
-                    android:id="@+id/day5_2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:textColor="@color/main_text"
-                    android:text="9" android:gravity="center"/>
-                <TextView
-                    android:id="@+id/day5_3"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:textColor="@color/main_text"
-                    android:text="10" android:gravity="center"/>
-                <TextView
-                    android:id="@+id/day5_4"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:textColor="@color/main_text"
-                    android:text="11" android:gravity="center"/>
-                <TextView
-                    android:id="@+id/day5_5"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:textColor="@color/main_text"
-                    android:text="12" android:gravity="center"/>
-                <TextView
-                    android:id="@+id/day5_6"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:textColor="@color/main_text"
-                    android:text="13" android:gravity="center"/>
-                <TextView
-                    android:id="@+id/day5_7"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:textColor="@color/main_text"
-                    android:text="14" android:gravity="center"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:id="@+id/day6_1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:textColor="@color/main_text"
-                    android:text="8" android:gravity="center"/>
-                <TextView
-                    android:id="@+id/day6_2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:textColor="@color/main_text"
-                    android:text="9" android:gravity="center"/>
-                <TextView
-                    android:id="@+id/day6_3"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:textColor="@color/main_text"
-                    android:text="10" android:gravity="center"/>
-                <TextView
-                    android:id="@+id/day6_4"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:textColor="@color/main_text"
-                    android:text="11" android:gravity="center"/>
-                <TextView
-                    android:id="@+id/day6_5"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:textColor="@color/main_text"
-                    android:text="12" android:gravity="center"/>
-                <TextView
-                    android:id="@+id/day6_6"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:textColor="@color/main_text"
-                    android:text="13" android:gravity="center"/>
-                <TextView
-                    android:id="@+id/day6_7"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:textColor="@color/main_text"
-                    android:text="14" android:gravity="center"/>
-            </LinearLayout>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Event Calendar"
+                android:paddingTop="20dp"
+                android:paddingBottom="10dp"
+                android:textColor="@color/main_text"
+                android:textSize="25dp"
+                android:paddingStart="20dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/noEvents"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="italic"
+                android:text="No Events"
+                android:textColor="@color/btn_l"
+                android:textAlignment="center"
+                android:textSize="20dp"
+                android:padding="15dp"
+                android:background="@drawable/border_card"
+                android:layout_margin="15dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/eventsListView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
 
         </LinearLayout>
 
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Event Calendar"
-            android:paddingTop="20dp"
-            android:paddingBottom="10dp"
-            android:textColor="@color/main_text"
-            android:textSize="25dp"
-            android:paddingStart="20dp"
-            android:textStyle="bold"/>
-
-        <TextView
-            android:id="@+id/noEvents"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="italic"
-            android:text="No Events"
-            android:textColor="@color/btn_l"
-            android:textAlignment="center"
-            android:textSize="20dp"
-            android:padding="15dp"
-            android:background="@drawable/border_card"
-            android:layout_margin="15dp"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/eventsListView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-
-    </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>

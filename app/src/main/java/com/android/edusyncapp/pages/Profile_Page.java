@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -16,6 +17,9 @@ import com.android.edusyncapp.R;
 import com.android.edusyncapp.database.UserDB;
 import com.android.edusyncapp.models.Student;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 public class Profile_Page extends Fragment {
 
@@ -48,6 +52,9 @@ public class Profile_Page extends Fragment {
         setStudentData();
         items(view);
         btnLogout.setOnClickListener(v-> logout());
+        btnUpdate.setOnClickListener(v->{
+            startActivity(new Intent(getContext(), EditProfile_Page.class));
+        });
         return view;
     }
     private void items(View view){
@@ -61,25 +68,32 @@ public class Profile_Page extends Fragment {
         btnUpdate = view.findViewById(R.id.btnUpdate);
         btnLogout = view.findViewById(R.id.btnLogout);
     }
-    private void setStudentData(){
-        userDB.getUserById(userId, new UserDB.DBCallbackWithData<Student>() {
+    private void setStudentData() {
+        userDB.listenForStudentChanges(new ValueEventListener() {
             @Override
-            public void onSuccess(Student data) {
-                txtSName.setText(data.getFullName());
-                txtSUsername.setText(data.getUsername());
-                txtUId.setText(data.getId());
-//                txtCName.setText(data.getCourseName());
-                txtEmail.setText(data.getEmail());
-                txtPNumber.setText(data.getPhoneNumber());
-                txtMainSName.setText(data.getFullName());
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    Student student = snapshot.child(userId).getValue(Student.class);
+                    if (student != null) {
+                        txtSName.setText(student.getFullName());
+                        txtSUsername.setText(student.getUsername());
+                        txtUId.setText(student.getId());
+                        txtEmail.setText(student.getEmail());
+                        txtPNumber.setText(student.getPhoneNumber());
+                        txtMainSName.setText(student.getFullName());
+                    }
+                } else {
+                    Toast.makeText(getContext(), "Student not found in real-time database", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
-            public void onFailure(String error) {
-                Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getContext(), "Failed to listen for changes: " + error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
+
     private void logout(){
         Dialog dialog = new Dialog(getContext());
         dialog.setContentView(R.layout.simple_dialog);

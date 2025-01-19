@@ -1,7 +1,10 @@
 package com.android.edusyncapp.pages;
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -77,5 +80,37 @@ public class Main_Screen extends AppCompatActivity {
 
         fragmentTransaction.replace(R.id.mainFrameLayout, fragment);
         fragmentTransaction.commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        confirmation();
+    }
+
+    private void confirmation(){
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.simple_dialog);
+        dialog.show();
+
+        TextView txtTitle = dialog.findViewById(R.id.txtTitle);
+        TextView txtMessage = dialog.findViewById(R.id.txtMessage);
+        TextView btnCancel = dialog.findViewById(R.id.btnCancel);
+        TextView btnAction = dialog.findViewById(R.id.btnAction);
+
+        txtTitle.setText("Confirmation");
+        txtMessage.setText("Are you sure you want to exit?");
+        btnCancel.setText("Cancel");
+        btnAction.setText("Exit");
+
+        btnCancel.setOnClickListener(v-> {
+            dialog.dismiss();
+        });
+
+        btnAction.setOnClickListener(v-> {
+            dialog.dismiss();
+            Intent intent = new Intent(this, Login_Page.class);
+            finish();
+        });
+
     }
 }

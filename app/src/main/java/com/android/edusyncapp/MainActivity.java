@@ -42,10 +42,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //todo: Events add
-        //todo: mark events in calender
-        //todo: Profile Edit
-        //todo: Note Single image Delete
-        //!todo: note edit -> remove image error
     }
 }

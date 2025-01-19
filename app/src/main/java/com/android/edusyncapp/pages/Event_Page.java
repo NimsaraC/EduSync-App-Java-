@@ -5,7 +5,9 @@ import static androidx.browser.customtabs.CustomTabsClient.getPackageName;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
@@ -15,6 +17,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.android.edusyncapp.R;
+import com.android.edusyncapp.adapter.EventAdapter;
+import com.android.edusyncapp.database.EventDB;
+import com.android.edusyncapp.models.Event;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -45,18 +53,29 @@ public class Event_Page extends Fragment {
     String selectedDate ="";
     private List<String> sampleList = new ArrayList<>();
     private TextView previousSelectedTextView = null;
+    private EventDB eventDB = new EventDB();
+    private List<Event> events = new ArrayList<>();
+    private List<Event> dayEvents = new ArrayList<>();
+    private EventAdapter adapter;
+    private String checkingDate;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_event__page, container, false);
         noEvents = view.findViewById(R.id.noEvents);
         eventsListView = view.findViewById(R.id.eventsListView);
-        sampleList.add("2025.01.02");
-        setCalendar(view);
+
+        eventsListView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        adapter = new EventAdapter(dayEvents);
+        eventsListView.setAdapter(adapter);
+
+        loadEvents(view);
+        //setCalendar(view);
         return view;
     }
 
     private void setCalendar(View view) {
+
         Calendar calendar = Calendar.getInstance();
         int currentYear = calendar.get(Calendar.YEAR);
         int currentMonth = calendar.get(Calendar.MONTH);
@@ -93,18 +112,25 @@ public class Event_Page extends Fragment {
                         int finalDayOfMonth = dayOfMonth;
 
                         dayTextView.setOnClickListener(v -> {
-                            if (previousSelectedTextView != null) {
-                                previousSelectedTextView.setBackgroundColor(Color.parseColor("#ECEFF1"));
-                                previousSelectedTextView.setTextColor(Color.parseColor("#283593"));
-                            }
-                            dayTextView.setBackgroundColor(Color.parseColor("#5C6BC0"));
-                            dayTextView.setTextColor(Color.parseColor("#ECEFF1"));
 
+                            dayEvents.clear();
                             selectedDate = String.format("%d.%02d.%02d", currentYear, currentMonth + 1, finalDayOfMonth);
                             checkEvents();
-
+                            for (Event event : events) {
+                                if (event.getDate().equals(selectedDate)) {
+                                    dayEvents.add(event);
+                                }
+                            }
+                            adapter.notifyDataSetChanged();
                             previousSelectedTextView = dayTextView;
                         });
+                        checkingDate = String.format("%d.%02d.%02d", currentYear, currentMonth +1, dayOfMonth);
+                        Log.d("Event_Page", "Checking date: " + checkingDate);
+
+                        if(sampleList.contains(checkingDate)){
+                            dayTextView.setBackgroundColor(Color.parseColor("#FFAB40"));
+                            dayTextView.setTextColor(Color.parseColor("#ECEFF1"));
+                        }
 
                         if (currentYear == todayYear && currentMonth == todayMonth && dayOfMonth == todayDay) {
                             selectedDate = String.format("%d.%02d.%02d", currentYear, currentMonth + 1, finalDayOfMonth);
@@ -124,6 +150,7 @@ public class Event_Page extends Fragment {
         }
     }
     private void checkEvents(){
+
         if(sampleList.isEmpty()){
             noEvents.setVisibility(View.VISIBLE);
             eventsListView.setVisibility(View.GONE);
@@ -151,6 +178,28 @@ public class Event_Page extends Fragment {
             case 11: return "December";
             default: return "";
         }
+    }
+    private void loadEvents(View view){
+        eventDB.listenForEventChanges(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                events.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    Event event = dataSnapshot.getValue(Event.class);
+                    events.add(event);
+                    sampleList.add(event.getDate());
+
+                }
+                setCalendar(view);
+                checkEvents();
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("Event_Page", "Error loading events: " + error.getMessage());
+            }
+        });
     }
 
 }

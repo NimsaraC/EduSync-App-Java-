@@ -252,30 +252,17 @@ public class AddNote_Page extends AppCompatActivity {
                 editNote.setImageUrls(imageUrls);
             }
             editNote();
-        }else{
-            for (int i = 0; i < imageUris.size(); i++) {
+        }else if(imageUrls.size() == imageUris.size()){
+            editNote();
+        }else {
+            {
                 imageUrls.clear();
-                Uri imageUri = imageUris.get(i);
-                if (imageUri == null) {
-                    continue;
+                for(Uri u : imageUris){
+                    imageUrls.add(u.toString());
+                    if(imageUrls.size() == imageUris.size()){
+                        editNote();
+                    }
                 }
-                String imageId = "note_" + System.currentTimeMillis() + "_" + i;
-                StorageReference imageRef = storageRef.child(imageId);
-                int finalI = i;
-                imageRef.putFile(imageUri)
-                        .addOnSuccessListener(taskSnapshot -> imageRef.getDownloadUrl()
-                                .addOnSuccessListener(uri -> {
-                                    imageUrls.add(uri.toString());
-                                    if (imageUrls.size() == imageUris.size()) {
-                                        editNote();
-                                    }
-                                }))
-                        .addOnFailureListener(e ->
-                        {
-                            if(type.equals("Add")){
-                                Toast.makeText(this, "Failed to upload image " + (finalI + 1), Toast.LENGTH_SHORT).show();
-                            }
-                        });
             }
         }
     }
